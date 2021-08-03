@@ -49,84 +49,62 @@ public class GMail {
 
     /**
      * @param subject The subject of the E-mail
-     * Displays MessagingException on error
+     * @throws MessagingException
      */
-    public void setSubject(String subject){
-        try {
-            msg.setSubject(subject);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+    public void setSubject(String subject)throws MessagingException{
+        msg.setSubject(subject);
     }
 
     /**
      * @param s The Body text to be added in the E-mail
-     * Displays MessagingException on error
+     * @throws MessagingException
      */
-    public void addText(String s){
-        try {
-            MimeBodyPart mimeBodyPart=new MimeBodyPart();
-            mimeBodyPart.setText(s);
-            multipart.addBodyPart(mimeBodyPart);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
+    public void addText(String s)throws MessagingException{
+        MimeBodyPart mimeBodyPart=new MimeBodyPart();
+        mimeBodyPart.setText(s);
+        multipart.addBodyPart(mimeBodyPart);
     }
 
     /**
      * @param file The file to be attached in the E-mail in the form of File object
-     * Displays MessagingException on error
-     * Displays IOException if file not found
+     * @throws MessagingException, IOException
      */
-    public void addAttachment(File file){
-        try {
-            MimeBodyPart mimeBodyPart=new MimeBodyPart();
-            mimeBodyPart.attachFile(file);
-            multipart.addBodyPart(mimeBodyPart);
-        } catch (IOException | MessagingException e) {
-            e.printStackTrace();
-        }
+    public void addAttachment(File file) throws MessagingException, IOException{
+        MimeBodyPart mimeBodyPart=new MimeBodyPart();
+        mimeBodyPart.attachFile(file);
+        multipart.addBodyPart(mimeBodyPart);
     }
 
     /**
      * @param fileAddress The absolute path of the file to be attached in the E-mail
-     * Displays MessagingException on error
-     * Displays IOException if file not found
+     * @throws MessagingException, IOException
      */
-    public void addAttachment(String fileAddress){
-        try {
-            MimeBodyPart mimeBodyPart=new MimeBodyPart();
-            mimeBodyPart.attachFile(fileAddress);
-            multipart.addBodyPart(mimeBodyPart);
-        } catch (IOException | MessagingException e) {
-            e.printStackTrace();
-        }
+    public void addAttachment(String fileAddress) throws MessagingException, IOException{
+        MimeBodyPart mimeBodyPart=new MimeBodyPart();
+        mimeBodyPart.attachFile(fileAddress);
+        multipart.addBodyPart(mimeBodyPart);
     }
 
     /**
      * Method to send the message
      * @return true if the message is sent successfully or false if the message is not sent successfully
+     * @throws MessagingException
      */
-    public boolean send(){
-        try {
-            msg.setFrom(new InternetAddress(fromAddress));
-            Message.RecipientType type;
-            switch (recipientType.toUpperCase()){
-                case "TO": type=Message.RecipientType.TO; break;
-                case "BCC": type=Message.RecipientType.BCC; break;
-                case "CC": type=Message.RecipientType.CC;break;
-                default: throw new IllegalStateException("Unexpected value: " + recipientType);
-            }
-            for(String to:toAddress)
-                msg.addRecipient(type,new InternetAddress(to));
-            MimeBodyPart mimeBodyPart=new MimeBodyPart();
-            mimeBodyPart.setText("");
-            multipart.addBodyPart(mimeBodyPart);
-            msg.setContent(multipart);
-            Transport.send(msg);
-            return true;
-        } catch (MessagingException e) {
-            return false;
+    public void send() throws MessagingException{
+        msg.setFrom(new InternetAddress(fromAddress));
+        Message.RecipientType type;
+        switch (recipientType.toUpperCase()){
+            case "TO": type=Message.RecipientType.TO; break;
+            case "BCC": type=Message.RecipientType.BCC; break;
+            case "CC": type=Message.RecipientType.CC;break;
+            default: throw new IllegalStateException("Unexpected value: " + recipientType);
         }
+        for(String to:toAddress)
+            msg.addRecipient(type,new InternetAddress(to));
+        MimeBodyPart mimeBodyPart=new MimeBodyPart();
+        mimeBodyPart.setText("");
+        multipart.addBodyPart(mimeBodyPart);
+        msg.setContent(multipart);
+        Transport.send(msg);
     }
 }
