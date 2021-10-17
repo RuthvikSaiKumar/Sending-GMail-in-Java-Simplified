@@ -7,5 +7,4 @@ Your must have javax.mail and javax.activation jar files downloaded. [javax.acti
 
 The jar files must be added to your project.
 
-Note:
-  In your google security setting please turn ***```on```*** **Less security app access** for this to work otherwise the mail won't be sent
+> In your google security setting please turn ***```on```*** **Less security app access** for this to work otherwise the mail won't be sent
