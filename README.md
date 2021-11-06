@@ -1,7 +1,20 @@
-# Sending-GMail-using-Java
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+
+# Sending GMail using Java
+
 This is my own library which uses javax.mail. My library simplifies the sending of mails using Java.
 
 All the decription of the functions and constructor is included as Javadoc in the code itself.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+## Demo
+
+![image](https://user-images.githubusercontent.com/86515993/140597406-544a7862-205b-4236-b7a1-45af222c5f6e.png)
+
 
 Your must have javax.mail and javax.activation jar files downloaded. [javax.activation is not used in the library but it is required for the program to work otherwise it won't work]
 
