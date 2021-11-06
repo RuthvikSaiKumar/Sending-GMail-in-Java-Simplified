@@ -11,7 +11,7 @@ All the decription of the functions and constructor is included as Javadoc in th
 [MIT](https://choosealicense.com/licenses/mit/)
 
 
-## Demo
+## Usage
 
 ![image](https://user-images.githubusercontent.com/86515993/140597406-544a7862-205b-4236-b7a1-45af222c5f6e.png)
 
